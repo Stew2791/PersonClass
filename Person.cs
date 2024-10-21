@@ -68,7 +68,10 @@ namespace MyClasses
             Console.WriteLine("Date of Birth: {0}\\{1}\\{2} ({3} yrs)", DateOfBirth.Day, DateOfBirth.Month, DateOfBirth.Year, age);
         }
 
-        // returns the person's age (in days) calculated from their birthday and the current date.
+        /*
+         returns the person's age (in days) calculated from their birthday and the current date.
+         not especially useful but interesting nonetheless.
+        */
         public int GetAgeInDays()
         {
             int age = (DateTime.Now - DateOfBirth).Days;
