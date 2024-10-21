@@ -10,13 +10,21 @@ namespace MyClasses
 {
     public class Person
     {
-        private DateTime _dateOfBirth; // a private backing field for the similarly named public property.
+        // private backing fields for the similarly named public properties...
+        private DateTime _dateOfBirth;
+        private string _phoneNumber;
 
-        private string _phoneNumber; // a private backing field for the similarly named public property.
-
-        public string FirstName { get; set; } // an automatic property, the compiler creates a hidden backing field.
+        // automatic properties, the compiler creates hidden backing fields...
+        public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressTownCity { get; set; }
+        public string AddressCounty { get; set; }
+        public string AddressCountry { get; set; }
+        public string AddressPostCode { get; set; }
+
+        // properties...
 
         // a person's date of birth should not exceed that of the oldest living human on record or be in the future...
         public DateTime DateOfBirth
@@ -28,12 +36,6 @@ namespace MyClasses
                     _dateOfBirth = value;
             }
         }
-
-        public string AddressLine1 { get; set; }
-        public string AddressTownCity { get; set; }
-        public string AddressCounty { get; set; }
-        public string AddressCountry { get; set; }
-        public string AddressPostCode { get; set; }
 
         // a phone number should only contain numeric digits and be of a reasonable length...
         public string PhoneNumber
@@ -58,6 +60,8 @@ namespace MyClasses
                 }
             }
         }
+
+        // methods...
 
         /*
          constructor.
