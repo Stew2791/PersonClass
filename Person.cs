@@ -7,46 +7,52 @@
 using System;
 
 namespace MyClasses
-{     
+{
     public class Person
     {
-        private int _age;
-        private double _height;
+        public string Name { get; set; } // an automatic property.
 
-        public string Name { get; set; }
+        private DateTime dateOfBirth; // nb. setting this requires multiple parameters, hence not made a property.
 
-        public int Age
+        private double _heightInFeet; // a private backing field for a property. 
+        
+        public double HeightinFeet // a property.
         {
-            get { return _age; }
-            set { _age = value < 0 ? 0 : value; }
+            get { return _heightInFeet; }
+            set { _heightInFeet = value < 0 ? 0 : value; }
         }
-
-        public double Height
-        {
-            get { return _height; }
-            set { _height = value < 0 ? 0 : value; }
-        }
-
+        
         // constructor.
         public Person(string name)
         {
             Name = name;
-            Age = 0;
-            Height = 0;
+            HeightinFeet = 0;
         }
 
-        // constructor.
-        public Person(string name, int age, double height)
+        // sets the date of birth.
+        public bool SetDateOfBirth(int day, int month, int year)
         {
-            Name = name;
-            Age = age;
-            Height = height;
+            try
+            {
+                dateOfBirth = new DateTime(year, month, day);
+            }
+            catch { return false; }
+
+            return true;
+        }
+
+        // gets the date of birth.
+        public DateTime GetDateOfBirth()
+        {
+            return dateOfBirth.Date;
         }
 
         // prints the person's details to the console.
         public void PrintDetails()
         {
-            Console.WriteLine("Name: {0}, Age: {1}, Height: {2}", Name, Age, Height);
+            Console.WriteLine("\r\nName: {0}", Name);
+            Console.WriteLine("Date of Birth: {0}\\{1}\\{2}", dateOfBirth.Day, dateOfBirth.Month, dateOfBirth.Year);
+            Console.WriteLine("Height: {0}", HeightinFeet);
         }
     }
 }
