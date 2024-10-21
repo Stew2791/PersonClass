@@ -76,7 +76,12 @@ namespace MyClasses
             AddressCountry = "n/a";
             AddressPostCode = "n/a";
 
-            _phoneNumber = "n/a"; // nb. we set the backing field directly as the value here would fail the property verification.
+            /*
+             nb. we set the backing field directly as the value here would fail the property verification.
+             nb. actually the verifier now sets this same (invalid) value anyway so we could also assign to the property
+             without it ie. being left blank.
+            */
+            _phoneNumber = "n/a";
         }
 
         // prints the person's details to the console.
