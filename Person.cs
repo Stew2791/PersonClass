@@ -1,7 +1,11 @@
 /*
  Person.cs
- a class for storing general contact info about a Person.
+ a C# class for storing general contact info about a Person.
  Stewart Wilson, Oct 2024.
+
+ Todo...
+ - add some basic validation for names and addresses?, ie. minimum string lengths.
+
 */
 
 using System;
@@ -29,7 +33,7 @@ namespace MyClasses
 
         // public properties...
 
-        // a person's date of birth should not make them unfeasibly old or exist in the future...
+        // a living person's date of birth should not exist in the future or make them unfeasibly old...
         public DateTime DateOfBirth
         {
             get { return _dateOfBirth; }
