@@ -31,7 +31,7 @@ namespace MyClasses
             HeightinFeet = 0;
         }
 
-        // sets the date of birth.
+        // sets the date of birth, returns true on success.
         public bool SetDateOfBirth(int day, int month, int year)
         {
             try
