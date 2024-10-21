@@ -10,21 +10,28 @@ namespace MyClasses
 {
     public class Person
     {
-        public string FirstName { get; set; } // an automatic property.
-        public string LastName { get; set; } // an automatic property.
+        private DateTime _dateOfBirth; // a private backing field for the similarly named public property.
 
-        public string EmailAddress { get; set; } // an automatic property.
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
-        /*
-         nb. setting a date seems best done using a method with multiple parameters (d/m/y), hence not made a property,
-         while we could use a property instead, the validation required could create quite a lot of clutter up here.
-        */
-        private DateTime dateOfBirth;
+        public string EmailAddress { get; set; }
 
-        public string AddressLine1 { get; set; } // an automatic property.
-        public string AddressTownCity { get; set; } // an automatic property.
-        public string AddressCountry { get; set; } // an automatic property.
-        public string AddressPostCode { get; set; } // an automatic property.
+        public DateTime DateOfBirth
+        {
+            get { return _dateOfBirth; }
+            set
+            {
+                if (value >= new DateTime(1900, 1, 1) && value <= DateTime.Now)
+                    _dateOfBirth = value;
+            }
+        }
+
+        public string AddressLine1 { get; set; }
+        public string AddressTownCity { get; set; }
+        public string AddressCounty { get; set; }
+        public string AddressCountry { get; set; }
+        public string AddressPostCode { get; set; }
 
 
         // constructor.
@@ -37,34 +44,17 @@ namespace MyClasses
 
             AddressLine1 = "n/a";
             AddressTownCity = "n/a";
+            AddressCounty = "n/a";
             AddressCountry = "n/a";
             AddressPostCode = "n/a";
 
-            dateOfBirth = DateTime.Now; // using a default date of 'now' seems as reasonable as any.  
-        }
-
-        // sets the date of birth, returns true on success.
-        public bool SetDateOfBirth(int day, int month, int year)
-        {
-            try
-            {
-                dateOfBirth = new DateTime(year, month, day);  // nb will throw an exception if invalid.
-            }
-            catch { return false; }
-
-            return true;
-        }
-
-        // gets the date of birth.
-        public DateTime GetDateOfBirth()
-        {
-            return dateOfBirth.Date;
+            DateOfBirth = DateTime.Now; // using a default date of 'now' seems as reasonable as any.  
         }
 
         // returns the person's age (in days) calculated from their birthday and the current date.
         public int GetAgeInDays()
         {
-            int age = (DateTime.Now - dateOfBirth).Days;
+            int age = (DateTime.Now - DateOfBirth).Days;
 
             return age;
         }
@@ -72,15 +62,15 @@ namespace MyClasses
         // returns the person's age (in years) calculated from their birthday and the current date.
         public int GetAgeInYears()
         {
-            int age = (DateTime.Now.Year - dateOfBirth.Year);
+            int age = (DateTime.Now.Year - DateOfBirth.Year);
 
-            if (DateTime.Now.Month < dateOfBirth.Month)
+            if (DateTime.Now.Month < DateOfBirth.Month)
             {
                 age--;
             }
-            else if (DateTime.Now.Month == dateOfBirth.Month)
+            else if (DateTime.Now.Month == DateOfBirth.Month)
             {
-                if (DateTime.Now.Day < dateOfBirth.Day)
+                if (DateTime.Now.Day < DateOfBirth.Day)
                     age--;
             }
 
@@ -96,11 +86,12 @@ namespace MyClasses
 
             Console.WriteLine("Address (line 1): {0}", AddressLine1);
             Console.WriteLine("Address (town/city): {0}", AddressTownCity);
+            Console.WriteLine("Address (county): {0}", AddressCounty);
             Console.WriteLine("Address (country): {0}", AddressCountry);
             Console.WriteLine("Address (postcode): {0}", AddressPostCode);
 
-            Console.WriteLine("Date of Birth: {0}\\{1}\\{2}", dateOfBirth.Day, dateOfBirth.Month, dateOfBirth.Year);
-            Console.WriteLine("Age (Years): {0}", GetAgeInYears()); 
+            int age = GetAgeInYears();
+            Console.WriteLine("Date of Birth: {0}\\{1}\\{2} ({3} yrs)", DateOfBirth.Day, DateOfBirth.Month, DateOfBirth.Year, age);
         }
     }
 }
