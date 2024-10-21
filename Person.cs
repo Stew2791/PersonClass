@@ -13,10 +13,13 @@ namespace MyClasses
         public string FirstName { get; set; } // an automatic property.
         public string LastName { get; set; } // an automatic property.
 
-        // nb. setting a date seems easiest using a method with multiple parameters (d/m/y), hence not made a property.
-        private DateTime dateOfBirth;
-
         public string EmailAddress { get; set; } // an automatic property.
+
+        /*
+         nb. setting a date seems best done using a method with multiple parameters (d/m/y), hence not made a property,
+         while we could use a property instead, the validation required could create quite a lot of clutter up here.
+        */
+        private DateTime dateOfBirth;
 
         public string AddressLine1 { get; set; } // an automatic property.
         public string AddressTownCity { get; set; } // an automatic property.
@@ -24,28 +27,20 @@ namespace MyClasses
         public string AddressPostCode { get; set; } // an automatic property.
 
 
-        private double _heightInFeet; // a private backing field for a property. 
-
-        public double HeightinFeet // a property.
-        {
-            get { return _heightInFeet; }
-            set { _heightInFeet = value < 1 ? 1 : value; }
-        }
-
         // constructor.
-        public Person(string firstName, string lastName)
+        public Person(string firstName, string lastName, string emailAddress)
         {
             FirstName = firstName;
             LastName = lastName;
+
+            EmailAddress = emailAddress;
 
             AddressLine1 = "n/a";
             AddressTownCity = "n/a";
             AddressCountry = "n/a";
             AddressPostCode = "n/a";
 
-            EmailAddress = "n/a";
-            dateOfBirth = DateTime.Now; // using a default date of 'now' seems as reasonable as any. 
-            HeightinFeet = 0;
+            dateOfBirth = DateTime.Now; // using a default date of 'now' seems as reasonable as any.  
         }
 
         // sets the date of birth, returns true on success.
@@ -105,9 +100,7 @@ namespace MyClasses
             Console.WriteLine("Address (postcode): {0}", AddressPostCode);
 
             Console.WriteLine("Date of Birth: {0}\\{1}\\{2}", dateOfBirth.Day, dateOfBirth.Month, dateOfBirth.Year);
-            Console.WriteLine("Age (Years): {0}", GetAgeInYears());
-
-            Console.WriteLine("Height: {0}", HeightinFeet);
+            Console.WriteLine("Age (Years): {0}", GetAgeInYears()); 
         }
     }
 }
