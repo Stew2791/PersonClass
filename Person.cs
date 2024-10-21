@@ -14,7 +14,7 @@ namespace MyClasses
         private DateTime _dateOfBirth;
         private string _phoneNumber;
 
-        // automatic properties, the compiler creates hidden backing fields...
+        // public 'automatic properties', the compiler creates hidden backing fields...
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
@@ -37,25 +37,27 @@ namespace MyClasses
             }
         }
 
-        // a phone number should only contain numeric digits and be of a reasonable length...
+        // a phone number should only contain numeric digits (and possibly spaces) and be of a reasonable length...
         public string PhoneNumber
         {
             get { return _phoneNumber; }
             set
             {
-                _phoneNumber = "n/a"; // set the backing field to a standard fail value that will be replaced after successful verification...
+                // set the backing field to a standard fail value that will be replaced after successful verification...
+                // ie. if the value supplied is "banana" then it will end up as "n/a".
+                _phoneNumber = "n/a";
 
                 if (value.Length > 8 && value.Length < 20)
                 {
-                    bool justNumbers = true;
+                    bool allValidChars = true;
 
                     for (int i = 0; i < value.Length; i++)
                     {
-                        if (!Char.IsDigit(value[i]))
-                            justNumbers = false;
+                        if (!Char.IsDigit(value[i]) && !Char.IsWhiteSpace(value[i]))
+                            allValidChars = false;
                     }
 
-                    if (justNumbers)
+                    if (allValidChars)
                         _phoneNumber = value;
                 }
             }
