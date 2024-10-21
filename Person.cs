@@ -10,6 +10,8 @@ namespace MyClasses
 {
     public class Person
     {
+        public string naString = "n/a"; // the string to be used as a default value for any unspecified/invalid (string) items.
+
         // private backing fields for the similarly named public properties...
         private DateTime _dateOfBirth;
         private string _phoneNumber;
@@ -44,8 +46,8 @@ namespace MyClasses
             set
             {
                 // set the backing field to a standard fail value that will be replaced after successful verification...
-                // ie. if the value supplied is "banana" then it will end up as "n/a".
-                _phoneNumber = "n/a";
+                // ie. if the value supplied is "banana" then it will end up with the value of naString.
+                _phoneNumber = naString;
 
                 if (value.Length > 8 && value.Length < 20)
                 {
@@ -76,18 +78,18 @@ namespace MyClasses
             EmailAddress = emailAddress;
             DateOfBirth = dateOfBirth;
 
-            AddressLine1 = "n/a";
-            AddressTownCity = "n/a";
-            AddressCounty = "n/a";
-            AddressCountry = "n/a";
-            AddressPostCode = "n/a";
+            AddressLine1 = naString;
+            AddressTownCity = naString;
+            AddressCounty = naString;
+            AddressCountry = naString;
+            AddressPostCode = naString;
 
             /*
              nb. we set the backing field directly as the value here would fail the property verification.
              nb. actually the verifier now sets this same (invalid) value anyway so we could also assign to the property
              without it ie. being left blank.
             */
-            _phoneNumber = "n/a";
+            _phoneNumber = naString;
         }
 
         // prints the person's details to the console.
