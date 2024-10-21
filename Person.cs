@@ -15,6 +15,11 @@ namespace MyClasses
         // nb. setting a date seems easiest using a method with multiple parameters (d/m/y), hence not made a property.
         private DateTime dateOfBirth;
 
+        public string AddressLine1 { get; set; } // an automatic property.
+        public string AddressTownCity { get; set; } // an automatic property.
+        public string AddressCountry { get; set; } // an automatic property.
+        public string EmailAddress { get; set; } // an automatic property.
+
         private double _heightInFeet; // a private backing field for a property. 
 
         public double HeightinFeet // a property.
@@ -27,6 +32,10 @@ namespace MyClasses
         public Person(string name)
         {
             Name = name;
+            AddressLine1 = "n/a";
+            AddressTownCity = "n/a";
+            AddressCountry = "n/a";
+            EmailAddress = "n/a";
             dateOfBirth = DateTime.Now; // using a default date of 'now' seems as reasonable as any. 
             HeightinFeet = 0;
         }
@@ -79,8 +88,15 @@ namespace MyClasses
         public void PrintDetails()
         {
             Console.WriteLine("\r\nName: {0}", Name);
+
+            Console.WriteLine("Address (line 1): {0}", AddressLine1);
+            Console.WriteLine("Address (town/city): {0}", AddressTownCity);
+            Console.WriteLine("Address (country): {0}", AddressCountry);
+            Console.WriteLine("E-mail Address: {0}", EmailAddress);
+
             Console.WriteLine("Date of Birth: {0}\\{1}\\{2}", dateOfBirth.Day, dateOfBirth.Month, dateOfBirth.Year);
             Console.WriteLine("Age (Years): {0}", GetAgeInYears());
+
             Console.WriteLine("Height: {0}", HeightinFeet);
         }
     }
