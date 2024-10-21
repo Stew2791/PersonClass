@@ -12,14 +12,14 @@ namespace MyClasses
     {
         public string Name { get; set; } // an automatic property.
 
-        private DateTime dateOfBirth; // nb. setting this is easiest using multiple parameters (d/m/y), hence not made a property.
+        private DateTime dateOfBirth; // nb. setting this seems easiest using multiple parameters (d/m/y), hence not made a property.
 
         private double _heightInFeet; // a private backing field for a property. 
         
         public double HeightinFeet // a property.
         {
             get { return _heightInFeet; }
-            set { _heightInFeet = value < 0 ? 0 : value; }
+            set { _heightInFeet = value < 1 ? 1 : value; }
         }
         
         // constructor.
