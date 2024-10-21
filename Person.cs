@@ -10,7 +10,7 @@ namespace MyClasses
 {
     public class Person
     {
-        public string naString = "n/a"; // the string to be used as a default value for any unspecified/invalid (string) items.
+        private const string defaultString = "n/a"; // the string to be used as a default value for any unspecified/invalid (string) items.
 
         // private backing fields for the similarly named public properties...
         private DateTime _dateOfBirth;
@@ -26,7 +26,7 @@ namespace MyClasses
         public string AddressCountry { get; set; }
         public string AddressPostCode { get; set; }
 
-        // properties...
+        // public properties...
 
         // a person's date of birth should not exceed that of the oldest living human on record or be in the future...
         public DateTime DateOfBirth
@@ -39,15 +39,17 @@ namespace MyClasses
             }
         }
 
-        // a phone number should only contain numeric digits (and possibly spaces) and be of a reasonable length...
+        // a phone number should only contain digits (and possibly spaces) and be of a reasonable length...
         public string PhoneNumber
         {
             get { return _phoneNumber; }
             set
             {
-                // set the backing field to a standard fail value that will be replaced after successful verification...
-                // ie. if the value supplied is "banana" then it will end up with the value of naString.
-                _phoneNumber = naString;
+                /*
+                 set the backing field to a standard fail value that will be replaced after successful validation...
+                 ie. if the value supplied is "banana" then it will end up with the default value instead.
+                */
+                _phoneNumber = defaultString;
 
                 if (value.Length > 8 && value.Length < 20)
                 {
@@ -78,18 +80,13 @@ namespace MyClasses
             EmailAddress = emailAddress;
             DateOfBirth = dateOfBirth;
 
-            AddressLine1 = naString;
-            AddressTownCity = naString;
-            AddressCounty = naString;
-            AddressCountry = naString;
-            AddressPostCode = naString;
+            AddressLine1 = defaultString;
+            AddressTownCity = defaultString;
+            AddressCounty = defaultString;
+            AddressCountry = defaultString;
+            AddressPostCode = defaultString;
 
-            /*
-             nb. we set the backing field directly as the value here would fail the property verification.
-             nb. actually the verifier now sets this same (invalid) value anyway so we could also assign to the property
-             without it ie. being left blank.
-            */
-            _phoneNumber = naString;
+            PhoneNumber = defaultString;
         }
 
         // prints the person's details to the console.
