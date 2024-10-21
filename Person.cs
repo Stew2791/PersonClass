@@ -41,6 +41,8 @@ namespace MyClasses
             get { return _phoneNumber; }
             set
             {
+                _phoneNumber = "n/a"; // set the backing field to a standard fail value that will be replaced after successful verification...
+
                 if (value.Length > 8 && value.Length < 20)
                 {
                     bool justNumbers = true;
