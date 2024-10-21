@@ -10,15 +10,18 @@ namespace MyClasses
 {
     public class Person
     {
-        public string Name { get; set; } // an automatic property.
+        public string FirstName { get; set; } // an automatic property.
+        public string LastName { get; set; } // an automatic property.
 
         // nb. setting a date seems easiest using a method with multiple parameters (d/m/y), hence not made a property.
         private DateTime dateOfBirth;
 
+        public string EmailAddress { get; set; } // an automatic property.
+
         public string AddressLine1 { get; set; } // an automatic property.
         public string AddressTownCity { get; set; } // an automatic property.
         public string AddressCountry { get; set; } // an automatic property.
-        public string EmailAddress { get; set; } // an automatic property.
+
 
         private double _heightInFeet; // a private backing field for a property. 
 
@@ -29,9 +32,10 @@ namespace MyClasses
         }
 
         // constructor.
-        public Person(string name)
+        public Person(string firstName, string lastName)
         {
-            Name = name;
+            FirstName = firstName;
+            LastName = lastName;
             AddressLine1 = "n/a";
             AddressTownCity = "n/a";
             AddressCountry = "n/a";
@@ -87,7 +91,7 @@ namespace MyClasses
         // prints the person's details to the console.
         public void PrintDetails()
         {
-            Console.WriteLine("\r\nName: {0}", Name);
+            Console.WriteLine("\r\nName: {0} {1}", FirstName, LastName);
 
             Console.WriteLine("Address (line 1): {0}", AddressLine1);
             Console.WriteLine("Address (town/city): {0}", AddressTownCity);
