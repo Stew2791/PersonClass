@@ -12,6 +12,8 @@ namespace MyClasses
     {
         private DateTime _dateOfBirth; // a private backing field for the similarly named public property.
 
+        private string _phoneNumber; // a private backing field for the similarly named public property.
+
         public string FirstName { get; set; } // an automatic property, the compiler creates a hidden backing field.
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
@@ -33,6 +35,28 @@ namespace MyClasses
         public string AddressCountry { get; set; }
         public string AddressPostCode { get; set; }
 
+        // a phone number should only contain numeric digits and be of a reasonable length...
+        public string PhoneNumber
+        {
+            get { return _phoneNumber; }
+            set
+            {
+                if (value.Length > 8 && value.Length < 20)
+                {
+                    bool justNumbers = true;
+
+                    for (int i = 0; i < value.Length; i++)
+                    {
+                        if (!Char.IsDigit(value[i]))
+                            justNumbers = false;
+                    }
+
+                    if (justNumbers)
+                        _phoneNumber = value;
+                }
+            }
+        }
+
         /*
          constructor.
          the parameters should contain the essentials, all other data is set to default values.
@@ -49,6 +73,8 @@ namespace MyClasses
             AddressCounty = "n/a";
             AddressCountry = "n/a";
             AddressPostCode = "n/a";
+
+            _phoneNumber = "n/a"; // nb. we set the backing field directly as the value here would fail the property verification.
         }
 
         // prints the person's details to the console.
@@ -63,6 +89,8 @@ namespace MyClasses
             Console.WriteLine("Address (county): {0}", AddressCounty);
             Console.WriteLine("Address (country): {0}", AddressCountry);
             Console.WriteLine("Address (postcode): {0}", AddressPostCode);
+
+            Console.WriteLine("Phone Number: {0}", PhoneNumber);
 
             int age = GetAgeInYears();
             Console.WriteLine("Date of Birth: {0}\\{1}\\{2} ({3} yrs)", DateOfBirth.Day, DateOfBirth.Month, DateOfBirth.Year, age);
