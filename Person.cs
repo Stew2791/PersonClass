@@ -12,10 +12,11 @@ namespace MyClasses
     {
         private DateTime _dateOfBirth; // a private backing field for the similarly named public property.
 
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } // an automatic property, the compiler creates a hidden backing field.
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
 
+        // a person's date of birth should not exceed that of the oldest living human on record or be in the future...
         public DateTime DateOfBirth
         {
             get { return _dateOfBirth; }
