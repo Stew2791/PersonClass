@@ -49,11 +49,38 @@ namespace MyClasses
             return dateOfBirth.Date;
         }
 
+        // returns the person's age (in days) calculated from their birthday and the current date.
+        public int GetAgeInDays()
+        {
+            int age = (DateTime.Now - dateOfBirth).Days;
+
+            return age;
+        }
+
+        // returns the person's age (in days) calculated from their birthday and the current date.
+        public int GetAgeInYears()
+        {
+            int age = (DateTime.Now.Year - dateOfBirth.Year);
+
+            if (DateTime.Now.Month < dateOfBirth.Month)
+            {
+                age--;
+            }
+            else if (DateTime.Now.Month == dateOfBirth.Month)
+            {
+                if (DateTime.Now.Day < dateOfBirth.Day)
+                    age--;
+            }
+
+            return age;
+        }
+
         // prints the person's details to the console.
         public void PrintDetails()
         {
             Console.WriteLine("\r\nName: {0}", Name);
             Console.WriteLine("Date of Birth: {0}\\{1}\\{2}", dateOfBirth.Day, dateOfBirth.Month, dateOfBirth.Year);
+            Console.WriteLine("Age (Years): {0}", GetAgeInYears());
             Console.WriteLine("Height: {0}", HeightinFeet);
         }
     }
