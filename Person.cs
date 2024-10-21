@@ -14,7 +14,6 @@ namespace MyClasses
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
         public string EmailAddress { get; set; }
 
         public DateTime DateOfBirth
@@ -33,22 +32,39 @@ namespace MyClasses
         public string AddressCountry { get; set; }
         public string AddressPostCode { get; set; }
 
-
-        // constructor.
-        public Person(string firstName, string lastName, string emailAddress)
+        /*
+         constructor.
+         the parameters should contain the essentials, all other data is set to default values.
+        */
+        public Person(string firstName, string lastName, string emailAddress, DateTime dateOfBirth)
         {
             FirstName = firstName;
             LastName = lastName;
-
             EmailAddress = emailAddress;
+            DateOfBirth = dateOfBirth;
 
             AddressLine1 = "n/a";
             AddressTownCity = "n/a";
             AddressCounty = "n/a";
             AddressCountry = "n/a";
             AddressPostCode = "n/a";
+        }
 
-            DateOfBirth = DateTime.Now; // using a default date of 'now' seems as reasonable as any.  
+        // prints the person's details to the console.
+        public void PrintDetails()
+        {
+            Console.WriteLine("\r\nName: {0} {1}", FirstName, LastName);
+
+            Console.WriteLine("E-mail Address: {0}", EmailAddress);
+
+            Console.WriteLine("Address (line 1): {0}", AddressLine1);
+            Console.WriteLine("Address (town/city): {0}", AddressTownCity);
+            Console.WriteLine("Address (county): {0}", AddressCounty);
+            Console.WriteLine("Address (country): {0}", AddressCountry);
+            Console.WriteLine("Address (postcode): {0}", AddressPostCode);
+
+            int age = GetAgeInYears();
+            Console.WriteLine("Date of Birth: {0}\\{1}\\{2} ({3} yrs)", DateOfBirth.Day, DateOfBirth.Month, DateOfBirth.Year, age);
         }
 
         // returns the person's age (in days) calculated from their birthday and the current date.
@@ -75,23 +91,6 @@ namespace MyClasses
             }
 
             return age;
-        }
-
-        // prints the person's details to the console.
-        public void PrintDetails()
-        {
-            Console.WriteLine("\r\nName: {0} {1}", FirstName, LastName);
-
-            Console.WriteLine("E-mail Address: {0}", EmailAddress);
-
-            Console.WriteLine("Address (line 1): {0}", AddressLine1);
-            Console.WriteLine("Address (town/city): {0}", AddressTownCity);
-            Console.WriteLine("Address (county): {0}", AddressCounty);
-            Console.WriteLine("Address (country): {0}", AddressCountry);
-            Console.WriteLine("Address (postcode): {0}", AddressPostCode);
-
-            int age = GetAgeInYears();
-            Console.WriteLine("Date of Birth: {0}\\{1}\\{2} ({3} yrs)", DateOfBirth.Day, DateOfBirth.Month, DateOfBirth.Year, age);
         }
     }
 }
