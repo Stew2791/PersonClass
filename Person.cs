@@ -21,6 +21,7 @@ namespace MyClasses
         public string AddressLine1 { get; set; } // an automatic property.
         public string AddressTownCity { get; set; } // an automatic property.
         public string AddressCountry { get; set; } // an automatic property.
+        public string AddressPostCode { get; set; } // an automatic property.
 
 
         private double _heightInFeet; // a private backing field for a property. 
@@ -36,9 +37,12 @@ namespace MyClasses
         {
             FirstName = firstName;
             LastName = lastName;
+
             AddressLine1 = "n/a";
             AddressTownCity = "n/a";
             AddressCountry = "n/a";
+            AddressPostCode = "n/a";
+
             EmailAddress = "n/a";
             dateOfBirth = DateTime.Now; // using a default date of 'now' seems as reasonable as any. 
             HeightinFeet = 0;
@@ -49,7 +53,7 @@ namespace MyClasses
         {
             try
             {
-                dateOfBirth = new DateTime(year, month, day);
+                dateOfBirth = new DateTime(year, month, day);  // nb will throw an exception if invalid.
             }
             catch { return false; }
 
@@ -93,10 +97,12 @@ namespace MyClasses
         {
             Console.WriteLine("\r\nName: {0} {1}", FirstName, LastName);
 
+            Console.WriteLine("E-mail Address: {0}", EmailAddress);
+
             Console.WriteLine("Address (line 1): {0}", AddressLine1);
             Console.WriteLine("Address (town/city): {0}", AddressTownCity);
             Console.WriteLine("Address (country): {0}", AddressCountry);
-            Console.WriteLine("E-mail Address: {0}", EmailAddress);
+            Console.WriteLine("Address (postcode): {0}", AddressPostCode);
 
             Console.WriteLine("Date of Birth: {0}\\{1}\\{2}", dateOfBirth.Day, dateOfBirth.Month, dateOfBirth.Year);
             Console.WriteLine("Age (Years): {0}", GetAgeInYears());
