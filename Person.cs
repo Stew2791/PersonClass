@@ -57,7 +57,7 @@ namespace MyClasses
             return age;
         }
 
-        // returns the person's age (in days) calculated from their birthday and the current date.
+        // returns the person's age (in years) calculated from their birthday and the current date.
         public int GetAgeInYears()
         {
             int age = (DateTime.Now.Year - dateOfBirth.Year);
