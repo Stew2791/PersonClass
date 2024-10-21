@@ -1,6 +1,6 @@
 /*
  Person.cs
- a class for storing info about a Person.
+ a class for storing general contact info about a Person.
  Stewart Wilson, Oct 2024.
 */
 
@@ -17,7 +17,7 @@ namespace MyClasses
         private DateTime _dateOfBirth;
         private string _phoneNumber;
 
-        // public 'automatic properties', the compiler creates hidden backing fields...
+        // public 'automatic properties', the compiler will create hidden backing fields...
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
