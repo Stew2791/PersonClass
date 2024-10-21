@@ -10,7 +10,8 @@ namespace MyClasses
 {
     public class Person
     {
-        private const string defaultString = "n/a"; // the string to be used as a default value for any unspecified/invalid (string) items.
+        // a string that can be used as a default value for any unspecified/unavailable/invalid (string) items..
+        private const string defaultString = "n/a"; 
 
         // private backing fields for the similarly named public properties...
         private DateTime _dateOfBirth;
@@ -46,7 +47,7 @@ namespace MyClasses
             set
             {
                 /*
-                 set the backing field to a standard fail value that will be replaced after successful validation...
+                 set the backing field to a default fail value that will be replaced after successful validation...
                  ie. if the value supplied is "banana" then it will end up with the default value instead.
                 */
                 _phoneNumber = defaultString;
