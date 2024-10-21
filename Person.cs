@@ -11,7 +11,7 @@ namespace MyClasses
     public class Person
     {
         // a string that can be used as a default value for any unspecified/unavailable/invalid (string) items..
-        private const string defaultString = "n/a"; 
+        private const string defaultString = "n/a";
 
         // private backing fields for the similarly named public properties...
         private DateTime _dateOfBirth;
@@ -29,7 +29,7 @@ namespace MyClasses
 
         // public properties...
 
-        // a person's date of birth should not exceed that of the oldest living human on record or be in the future...
+        // a person's date of birth should not predate that of the oldest currently living human on record or be in the future...
         public DateTime DateOfBirth
         {
             get { return _dateOfBirth; }
