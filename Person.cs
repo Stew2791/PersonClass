@@ -12,21 +12,22 @@ namespace MyClasses
     {
         public string Name { get; set; } // an automatic property.
 
-        // nb. setting a date seems easiest using a function with multiple parameters (d/m/y), hence not made a property.
-        private DateTime dateOfBirth; 
+        // nb. setting a date seems easiest using a method with multiple parameters (d/m/y), hence not made a property.
+        private DateTime dateOfBirth;
 
         private double _heightInFeet; // a private backing field for a property. 
-        
+
         public double HeightinFeet // a property.
         {
             get { return _heightInFeet; }
             set { _heightInFeet = value < 1 ? 1 : value; }
         }
-        
+
         // constructor.
         public Person(string name)
         {
             Name = name;
+            dateOfBirth = DateTime.Now; // using a default date of 'now' seems as reasonable as any. 
             HeightinFeet = 0;
         }
 
