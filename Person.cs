@@ -5,7 +5,7 @@
 
  Todo...
  - add some basic validation for names and addresses?, ie. minimum string lengths.
- - add some basic validation for the e-mail address, ie. contains an '@' symbol and looks like a valid domain name.
+ - improve the validation of the e-mail address, ie. contains just one '@' and at least one '.' in approximately the correct position.
 
 */
 
@@ -21,11 +21,11 @@ namespace MyClasses
         // private backing fields for the similarly named public properties...
         private DateTime _dateOfBirth;
         private string _phoneNumber;
+        private string _emailAddress;
 
         // public 'automatic properties', the compiler will create hidden backing fields for them...
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string EmailAddress { get; set; }
         public string AddressLine1 { get; set; }
         public string AddressTownCity { get; set; }
         public string AddressCounty { get; set; }
@@ -77,6 +77,19 @@ namespace MyClasses
                     if (looksOk)
                         _phoneNumber = value;
                 }
+            }
+        }
+
+        // an email address should at least contain one occurrence of the '@' character.
+        public string EmailAddress
+        {
+            get { return _emailAddress; }
+            set
+            {
+                if (value.Contains("@") && value.Contains("."))
+                    _emailAddress = value;
+                else
+                    _emailAddress = defaultString;
             }
         }
 
@@ -156,3 +169,4 @@ namespace MyClasses
         }
     }
 }
+
