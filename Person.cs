@@ -42,6 +42,8 @@ namespace MyClasses
             {
                 if (value >= new DateTime(1900, 1, 1) && value <= DateTime.Now)
                     _dateOfBirth = value;
+                else
+                    _dateOfBirth = new DateTime(1, 1, 1); // nb. this is also the date of an uninitialized DateTime.
             }
         }
 
@@ -111,8 +113,13 @@ namespace MyClasses
 
             Console.WriteLine("Phone Number: {0}", PhoneNumber);
 
-            int age = GetAgeInYears();
-            Console.WriteLine("Date of Birth: {0}\\{1}\\{2} ({3} yrs)", DateOfBirth.Day, DateOfBirth.Month, DateOfBirth.Year, age);
+            if (DateOfBirth.Year != 1)
+            {
+                int age = GetAgeInYears();
+                Console.WriteLine("Date of Birth: {0}\\{1}\\{2} ({3} yrs)", DateOfBirth.Day, DateOfBirth.Month, DateOfBirth.Year, age);
+            }
+            else
+                Console.WriteLine("Date of Birth: {0}", defaultString);
         }
 
         // returns the person's age (in years) calculated from their birthday and the current date.
