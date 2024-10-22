@@ -83,7 +83,7 @@ namespace MyClasses
             }
         }
 
-        // an email address should at least contain one occurrence of the '@' character.
+        // an email address should at least contain one occurrence of the '@' and '.' characters.
         public string EmailAddress
         {
             get { return _emailAddress; }
