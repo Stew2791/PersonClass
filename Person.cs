@@ -43,7 +43,11 @@ namespace MyClasses
                 if (value >= new DateTime(1900, 1, 1) && value <= DateTime.Now)
                     _dateOfBirth = value;
                 else
-                    _dateOfBirth = new DateTime(1, 1, 1); // nb. this is also the date of an uninitialized DateTime.
+                    _dateOfBirth = new DateTime(1, 1, 1);
+                /*
+                 nb. this date (1,1,1) also happens to be the date of an uninitialized DateTime, it's best to set it 
+                 specifically though and we can use the year 1 as an indicator of an invalid date of birth elsewhere.
+                */
             }
         }
 
