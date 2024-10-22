@@ -1,2 +1,2 @@
 # PersonClass
-a C# class to describe a person, generally..
+a C# class for storing general contact info about a Person.
