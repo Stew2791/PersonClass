@@ -5,13 +5,13 @@
 
  Todo...
  - add some basic validation for names and addresses?, ie. minimum string lengths.
- - improve the validation of the e-mail address, ie. contains just one '@' and at least one '.' in approx the correct position.
+ - improve the validation of the e-mail address, ie. contains just one '@' and at least one '.' in approximately the correct position.
 
 */
 
 using System;
 
-namespace MyClasses
+namespace AirBrainIndustries
 {
     public class Person
     {
