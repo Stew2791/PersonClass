@@ -15,7 +15,10 @@ namespace MyClasses
 {
     public class Person
     {
-        // a string that can be used as a default value for any unspecified/unavailable/invalid (string) items..
+        /*
+         a string that can be used as a default value for any unspecified/unavailable/invalid (string) items..
+         nb. we can assign this rather than leaving any string at null.
+        */
         private const string defaultString = "n/a";
 
         // private backing fields for the similarly named public properties...
@@ -101,10 +104,15 @@ namespace MyClasses
         */
         public Person(string firstName, string lastName, string emailAddress, DateTime dateOfBirth)
         {
-            FirstName = firstName;
-            LastName = lastName;
-            EmailAddress = emailAddress;
-            DateOfBirth = dateOfBirth;
+            // nb. note we are making the assignments through the properties which also does some validation in many cases.
+            // we try to avoid leaving any item set to null, assigning 'defaultString' instead...
+
+            FirstName = firstName != null ? firstName : defaultString;
+            LastName = lastName != null ? lastName : defaultString;
+
+            EmailAddress = emailAddress != null ? emailAddress : defaultString;
+
+            DateOfBirth = dateOfBirth != null ? dateOfBirth : new DateTime(1, 1, 1);
 
             AddressLine1 = defaultString;
             AddressTownCity = defaultString;
@@ -119,7 +127,6 @@ namespace MyClasses
         public void PrintDetails()
         {
             Console.WriteLine("\r\nName: {0} {1}", FirstName, LastName);
-
             Console.WriteLine("E-mail Address: {0}", EmailAddress);
 
             Console.WriteLine("Address (line 1): {0}", AddressLine1);
