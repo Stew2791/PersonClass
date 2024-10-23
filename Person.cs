@@ -17,16 +17,20 @@ namespace AirBrainIndustries
     {
         /*
          a string that can be used as a default value for any unspecified/unavailable/invalid (string) items..
-         nb. we can assign this rather than leaving any string at null.
+         nb. we can assign this rather than leaving a field's string value at null.
         */
-        private const string defaultString = "n/a";
+        private const string defaultValueString = "n/a";
 
         // private backing fields for the similarly named public properties...
         private DateTime _dateOfBirth;
         private string _phoneNumber;
         private string _emailAddress;
 
-        // public 'automatic properties', the compiler will create hidden backing fields for them...
+        /*
+         public 'automatic properties', these properties cannot use any additional logic.
+         { get; set; } is really just syntactic sugar, shorthand for.. get{ return fieldName; } set {fieldName = value; } 
+         nb. the compiler creates hidden backing fields for them.
+        */
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string AddressLine1 { get; set; }
@@ -65,7 +69,7 @@ namespace AirBrainIndustries
                  ie. if the value supplied is invalid then it will end up with the default value instead.
                  nb. the value in this case is obviously a string.
                 */
-                _phoneNumber = defaultString;
+                _phoneNumber = defaultValueString;
 
                 if (value.Length > 8 && value.Length < 20)
                 {
@@ -92,7 +96,7 @@ namespace AirBrainIndustries
                 if (value.Contains("@") && value.Contains("."))
                     _emailAddress = value;
                 else
-                    _emailAddress = defaultString;
+                    _emailAddress = defaultValueString;
             }
         }
 
@@ -104,23 +108,25 @@ namespace AirBrainIndustries
         */
         public Person(string firstName, string lastName, string emailAddress, DateTime dateOfBirth)
         {
-            // nb. note we are making the assignments through the properties which also does some validation in many cases.
-            // we try to avoid leaving any item set to null, assigning 'defaultString' instead...
+            /*
+             nb. note we are making the assignments through the properties which will perform validation in some cases.
+             we want to avoid any string items being null, assigning 'defaultString' to these instead, this allows us to avoid
+             a lot of messy null checks elsewhere...
+            */
+            FirstName = firstName != null ? firstName : defaultValueString;
+            LastName = lastName != null ? lastName : defaultValueString;
 
-            FirstName = firstName != null ? firstName : defaultString;
-            LastName = lastName != null ? lastName : defaultString;
-
-            EmailAddress = emailAddress != null ? emailAddress : defaultString;
+            EmailAddress = emailAddress != null ? emailAddress : defaultValueString;
 
             DateOfBirth = dateOfBirth != null ? dateOfBirth : new DateTime(1, 1, 1);
 
-            AddressLine1 = defaultString;
-            AddressTownCity = defaultString;
-            AddressCounty = defaultString;
-            AddressCountry = defaultString;
-            AddressPostCode = defaultString;
+            AddressLine1 = defaultValueString;
+            AddressTownCity = defaultValueString;
+            AddressCounty = defaultValueString;
+            AddressCountry = defaultValueString;
+            AddressPostCode = defaultValueString;
 
-            PhoneNumber = defaultString;
+            PhoneNumber = defaultValueString;
         }
 
         // prints the person's details to the console.
@@ -143,7 +149,7 @@ namespace AirBrainIndustries
                 Console.WriteLine("Date of Birth: {0}\\{1}\\{2} ({3} yrs)", DateOfBirth.Day, DateOfBirth.Month, DateOfBirth.Year, age);
             }
             else
-                Console.WriteLine("Date of Birth: {0}", defaultString);
+                Console.WriteLine("Date of Birth: {0}", defaultValueString);
         }
 
         // returns the person's age (in years) calculated from their birthday and the current date.
