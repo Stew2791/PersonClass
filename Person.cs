@@ -171,7 +171,7 @@ namespace AirBrainIndustries
         {
             bool looksOk = true; // innocent until proven guilty.
 
-            if (phoneNumber.Length < 8 && phoneNumber.Length > 20)
+            if (phoneNumber.Length < 8 || phoneNumber.Length > 20)
                 looksOk = false;
             else
             {
