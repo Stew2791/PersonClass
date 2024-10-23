@@ -64,26 +64,11 @@ namespace AirBrainIndustries
             get { return _phoneNumber; }
             set
             {
-                /*
-                 set the backing field to a default value that will be replaced after successful validation...
-                 ie. if the value supplied is invalid then it will end up with the default value instead.
-                 nb. the value in this case is obviously a string.
-                */
-                _phoneNumber = defaultValueString;
-
-                if (value.Length > 8 && value.Length < 20)
-                {
-                    bool looksOk = true;
-
-                    for (int i = 0; i < value.Length; i++)
-                    {
-                        if (!Char.IsDigit(value[i]) && !Char.IsWhiteSpace(value[i]))
-                            looksOk = false;
-                    }
-
-                    if (looksOk)
-                        _phoneNumber = value;
-                }
+                // nb. in the interests in keeping properties 'light' I made a method out of the original validation code..
+                if (LooksLikeViablePhoneNumber(value))
+                    _phoneNumber = value;
+                else
+                    _phoneNumber = defaultValueString;
             }
         }
 
@@ -179,6 +164,25 @@ namespace AirBrainIndustries
             int age = (DateTime.Now - DateOfBirth).Days;
 
             return age;
+        }
+
+        // returns true if a specified string looks like a valid/viable phone number.
+        public bool LooksLikeViablePhoneNumber(string phoneNumber)
+        {
+            bool looksOk = true;
+
+            if (phoneNumber.Length > 8 && phoneNumber.Length < 20)
+            {
+                for (int i = 0; i < phoneNumber.Length; i++)
+                {
+                    if (!Char.IsDigit(phoneNumber[i]) && !Char.IsWhiteSpace(phoneNumber[i]))
+                        looksOk = false;
+                }
+            }
+            else
+                looksOk = false;
+
+            return looksOk;
         }
     }
 }
