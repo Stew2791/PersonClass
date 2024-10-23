@@ -169,9 +169,11 @@ namespace AirBrainIndustries
         // returns true if a specified string looks like a valid/viable phone number.
         public bool LooksLikeViablePhoneNumber(string phoneNumber)
         {
-            bool looksOk = true;
+            bool looksOk = true; // innocent until proven guilty.
 
-            if (phoneNumber.Length > 8 && phoneNumber.Length < 20)
+            if (phoneNumber.Length < 8 && phoneNumber.Length > 20)
+                looksOk = false;
+            else
             {
                 for (int i = 0; i < phoneNumber.Length; i++)
                 {
@@ -179,8 +181,6 @@ namespace AirBrainIndustries
                         looksOk = false;
                 }
             }
-            else
-                looksOk = false;
 
             return looksOk;
         }
