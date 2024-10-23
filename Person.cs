@@ -6,7 +6,6 @@
  Todo...
  - add some basic validation for names and addresses?, ie. minimum string lengths.
  - improve the validation of the e-mail address, ie. contains just one '@' and at least one '.' in approximately the correct position.
-
 */
 
 using System;
@@ -28,7 +27,7 @@ namespace AirBrainIndustries
 
         /*
          public 'automatic properties', these properties cannot use any additional logic.
-         { get; set; } is really just syntactic sugar, shorthand for.. get{ return fieldName; } set {fieldName = value; } 
+         { get; set; } is really just convenient shorthand for.. get{ return fieldName; } set {fieldName = value; } 
          nb. the compiler creates hidden backing fields for them.
         */
         public string FirstName { get; set; }
@@ -52,8 +51,9 @@ namespace AirBrainIndustries
                 else
                     _dateOfBirth = new DateTime(1, 1, 1);
                 /*
-                 nb. this date (1,1,1) also happens to be the date of an uninitialized DateTime, it's best to set it 
-                 specifically though and we can use the year 1 as an indicator of an invalid date of birth elsewhere.
+                 nb. this date (1,1,1) also happens to be the date of an uninitialized DateTime object, it's best to set it 
+                 specifically though and we can use the year 1 as an indicator of an invalid (living person's) date of birth 
+                 elsewhere.
                 */
             }
         }
@@ -110,8 +110,8 @@ namespace AirBrainIndustries
         {
             /*
              nb. note we are making the assignments through the properties which will perform validation in some cases.
-             we want to avoid any string items being null, assigning 'defaultString' to these instead, this allows us to avoid
-             a lot of messy null checks elsewhere...
+             we want to avoid any string items being null, assigning a default string value to these instead, this allows 
+             us to avoid a lot of messy null checks elsewhere...
             */
             FirstName = firstName != null ? firstName : defaultValueString;
             LastName = lastName != null ? lastName : defaultValueString;
