@@ -64,7 +64,7 @@ namespace AirBrainIndustries
             get { return _phoneNumber; }
             set
             {
-                // nb. in the interests in keeping properties 'light' I made a method out of the original validation code..
+                // nb. in the interests of keeping properties 'light' I made a method out of the original validation code..
                 if (LooksLikeViablePhoneNumber(value))
                     _phoneNumber = value;
                 else
